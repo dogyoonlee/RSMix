@@ -139,7 +139,7 @@ def train(args, io):
             if args.beta > 0 and r < args.rsmix_prob:
                 rsmix = True
                 data, lam, label, label_b = rsmix_provider.rsmix(data, label, beta=args.beta, n_sample=args.nsample, KNN=args.knn)
-            if args.rot or args.rdscale or args.shift or args.jitter or args.shuffle or (args.beta is not 0.0):
+            if args.rot or args.rdscale or args.shift or args.jitter or args.shuffle or args.rddrop or (args.beta is not 0.0):
                 data = torch.FloatTensor(data)
             if rsmix:
                 lam = torch.FloatTensor(lam)
