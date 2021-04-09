@@ -117,7 +117,7 @@ def train(args, io):
             rsmix = False
             # for new augmentation code, remove squeeze because it will be applied after augmentation.
             # default from baseline model, scale, shift, shuffle was default augmentation
-            if args.rot or args.rdscale or args.shift or args.jitter or args.shuffle or (args.beta is not 0.0):
+            if args.rot or args.rdscale or args.shift or args.jitter or args.shuffle or args.rddrop or (args.beta is not 0.0):
                 data = data.cpu().numpy()
             if args.rot:
                 data = provider.rotate_point_cloud(data)
@@ -131,6 +131,8 @@ def train(args, io):
             if args.jitter:
                 tmp_data = provider.jitter_point_cloud(data[:,:,0:3])
                 data[:,:,0:3] = tmp_data
+            if args.rddrop:
+                data = provider.random_point_dropout(data)
             if args.shuffle:
                 data = provider.shuffle_points(data)
             r = np.random.rand(1)
