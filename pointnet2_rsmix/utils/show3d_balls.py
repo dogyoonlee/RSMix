@@ -290,8 +290,8 @@ if __name__=='__main__':
             filename = 'lenidx_'+lenidx+'_label_b_'+filename_label+'_lam_'+str(lam)+'_part_a_knn'
         elif args.part_b:
             filename = 'lenidx_'+lenidx+'_label_b_'+filename_label+'_lam_'+str(lam)+'_part_b_knn'
-    else:
-        raise ValueError('Invalid arguments. Please input args to notice what kind of view.')
+    # else:
+    #     raise ValueError('Invalid arguments. Please input args to notice what kind of view.')
     
     point_set = np.loadtxt(args.path ,delimiter=',').astype(np.float32)
     random_idx = np.random.randint(point_set.shape[0], size=1024)
